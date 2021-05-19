@@ -40,7 +40,7 @@ Visualization of adversarial examples with Den121 as the white-box. Original cla
 If you find this work is useful in your research, please consider citing:
 
 ```
-@inproceedings{Zhang2020PatchWise,
+@inproceedings{Cheng2021StatisticAlignment,
     title={Feature Space Targeted Attacks by Statistic Alignment},
     author={Gao, Lianli and Cheng, Yaya and Zhang, Qilong and Xu, Xing and Song, Jingkuan},
     Booktitle = {International Joint Conferences on Artificial Intelligence},
