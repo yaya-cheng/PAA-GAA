@@ -16,6 +16,8 @@ tSuc and tTR performance \wrt relative layer depth for multiple transfer scenari
 ## Visualization of the adversarial examples
 ![image](https://github.com/yaya-cheng/PAA-GAA/blob/main/visualization%20of%20adversarial%20examples/ori.png)
 
+Visualization of adversarial examples with Den121 as the white-box. Original class: goldfish, targeted class: axolotl. Fromleft to right: Raw, MIFGSM, AA and PAAp.
+
 ## Implementation
 - Tensorflow 1.14, Python3.7
 
