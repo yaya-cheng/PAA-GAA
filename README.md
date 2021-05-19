@@ -3,23 +3,18 @@
 ## This repo is the official **Pytorch code** implementation of our paper [Feature Space Targeted Attacks by Statistic Alignment].
 
 ## Condensed Abstract
-By adding human-imperceptible perturbations to images, DNNs can be easily fooled. As one of the mainstream methods, feature space targeted attacks perturb images by modulating their intermediate feature maps, for the discrepancy between the intermediate source and target features is minimized. However, the current choice of pixel-wise Euclidean Distance to measure the discrepancy is questionable because it unreasonably imposes a spatial-consistency constraint on the source and target features. Intuitively, an image can be categorized as “cat” no matter the cat is on the left or right of the image. To address this issue, we propose to measure this discrepancy using statistic alignment. Specifically, we design two novel approaches called Pair-wise Alignment Attack and Global-wise Alignment Attack, which attempt to measure similarities between feature maps
-by high-order statistics with translation invariance. Furthermore, we systematically analyze the layerwise transferability with varied difficulties to obtain highly reliable attacks. Extensive experiments verify the effectiveness of our proposed method, and it outperforms the state-of-the-art algorithms by a large margin.
+By adding human-imperceptible perturbations to images, DNNs can be easily fooled. As one of the mainstream methods, feature space targeted attacks perturb images by modulating their intermediate feature maps, for the discrepancy between the intermediate source and target features is minimized. However, the current choice of pixel-wise Euclidean Distance to measure the discrepancy is questionable because it unreasonably imposes a spatial-consistency constraint on the source and target features. Intuitively, an image can be categorized as “cat” no matter the cat is on the left or right of the image. To address this issue, we propose to measure this discrepancy using statistic alignment. Specifically, we design two novel approaches called Pair-wise Alignment Attack and Global-wise Alignment Attack, which attempt to measure similarities between feature maps by high-order statistics with translation invariance. Furthermore, we systematically analyze the layerwise transferability with varied difficulties to obtain highly reliable attacks. Extensive experiments verify the effectiveness of our proposed method, and it outperforms the state-of-the-art algorithms by a large margin.
 
-## Effectiveness of our $\mathbf{PAA} and $\mathbf{GAA}$
+## Effectiveness of our PAA and GAA
 ![image](https://github.com/yaya-cheng/PAA-GAA/blob/main/class.png)
 
-tSuc and tTR performance \wrt relative layer depth for multiple transfer scenarios. The figure is split into four phases: upper left, upper right, bottom left, and bottom right, corresponding to black-box attacks transferring from Den121, Inc-v3, VGG19, and Res50. All of our proposed methods outperform AA in most cases, which indicates the effectiveness of statistic alignment on various layers.
-
+tSuc and tTR performance w.r.t. relative layer depth for multiple transfer scenarios. The figure is split into four phases: upper left, upper right, bottom left, and bottom right, corresponding to black-box attacks transferring from Den121, Inc-v3, VGG19, and Res50. All of our proposed methods outperform AA in most cases, which indicates the effectiveness of statistic alignment on various layers.
 
 
 ## Visualization of the adversarial examples
-![image](https://github.com/yaya-cheng/PAA-GAA/blob/main/visualization%20of%20adversarial%20examples/ori.png)
+![image](https://github.com/yaya-cheng/PAA-GAA/blob/main/visualization%20of%20adversarial%20examples/all.png)
 
 Visualization of adversarial examples with Den121 as the white-box. Original class: goldfish, targeted class: axolotl. Fromleft to right: Raw, MIFGSM, AA and PAAp.
-
-## Implementation
-- Tensorflow 1.14, Python3.7
 
 - Download the models
 
@@ -28,18 +23,17 @@ Visualization of adversarial examples with Den121 as the white-box. Original cla
 
 - Then put these models into ".models/"
 
-- Run $\mathbf{PAA_p}$ on Den121 under $2nd$:
+- Run PAAp on Den121 under $2nd$:
 
   ```python
   python fp_attack_den121.py --method 1 --kernel_type poly --kernel_for_furthe l_poly --byRank 1 --targetcls 2 
   ```
 
-- Run $\mathbf{GAA}$ on Den121 under $2nd$:
+- Run GAA on Den121 under 2nd:
 
   ```python
   python fp_attack_den121.py --mmdMethod 2 --GAA 1 --byRank 1 --targetcls 2 
   ```
-
 
 ## Citing this work
 
@@ -53,3 +47,4 @@ If you find this work is useful in your research, please consider citing:
     year={2021}
 }
 ```
+
