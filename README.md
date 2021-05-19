@@ -8,7 +8,7 @@ By adding human-imperceptible perturbations to images, DNNs can be easily fooled
 ## Effectiveness of our PAA and GAA
 ![image](https://github.com/yaya-cheng/PAA-GAA/blob/main/class.png)
 
-tSuc and tTR performance w.r.t. relative layer depth for multiple transfer scenarios. The figure is split into four phases: upper left, upper right, bottom left, and bottom right, corresponding to black-box attacks transferring from Den121, Inc-v3, VGG19, and Res50. All of our proposed methods outperform AA in most cases, which indicates the effectiveness of statistic alignment on various layers.
+tSuc and tTR performance w.r.t. relative layer depth for multiple transfer scenarios. The figure is split into four phases, corresponding to black-box attacks transferring from Den121, Inc-v3, VGG19, and Res50. All of our proposed methods outperform AA in most cases, which indicates the effectiveness of statistic alignment on various layers.
 
 
 ## Visualization of the adversarial examples
