@@ -23,7 +23,7 @@ Visualization of adversarial examples with Den121 as the white-box. Original cla
 
 - Then put these models into ".models/"
 
-- Run PAAp on Den121 under $2nd$:
+- Run PAAp on Den121 under 2nd:
 
   ```python
   python fp_attack_den121.py --method 1 --kernel_type poly --kernel_for_furthe l_poly --byRank 1 --targetcls 2 
