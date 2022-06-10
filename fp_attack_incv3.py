@@ -19,6 +19,7 @@ import torchvision.transforms as transforms
 from Normalize import Normalize
 import cv2
 import math
+from utils import test
 
 parser = argparse.ArgumentParser(description='PyTorch Attack')
 parser.add_argument('--data', default='data/ImageNet_chosen_dn-res-incv3-vgg19_5perclass', metavar='DIR', help='path to dataset')
@@ -413,48 +414,6 @@ def squared_l2_norm(x):
 
 def l2_norm(x):
     return squared_l2_norm(x) ** 0.5
-
-@torch.no_grad()
-def test(x_adv, y, target_y, ResNet_50, Vgg_19, Inc_v3, DenseNet_121, list_50, list_y, num, utr, tsuc, ttr):
-    x_adv = x_adv.cuda()
-    y = y.cuda()
-    pred_adv_vgg = torch.argmax(Vgg_19(x_adv), dim=1)
-    pred_adv_incv3 = torch.argmax(Inc_v3(x_adv), dim=1)
-    pred_adv_121 = torch.argmax(DenseNet_121(x_adv), dim=1)
-    pred_adv_50 = torch.argmax(ResNet_50(x_adv), dim=1)
-
-    # White Box Model
-    num[0] += torch.sum(pred_adv_50 != y)
-    tsuc[0] += torch.sum(pred_adv_50 == target_y)
-    idx_50 = pred_adv_50 != y
-    idx_50_t = pred_adv_50 == target_y
-    # Save White Box Model Tsuc List
-    for img in x_adv[idx_50_t]:
-        list_50.append(img.detach().cpu().numpy())
-    for t_y in target_y[idx_50_t]:
-        list_y.append(t_y.detach().cpu().numpy())
-    
-    # Black Box Model
-    num[1] += torch.sum(pred_adv_vgg  != y)
-    tsuc[1] += torch.sum(pred_adv_vgg  == target_y)
-    idx_vgg = pred_adv_vgg != y
-    idx_vgg_t = pred_adv_vgg == target_y
-    num[2] += torch.sum(pred_adv_incv3 != y)
-    tsuc[2] += torch.sum(pred_adv_incv3 == target_y)
-    idx_incv3 = pred_adv_incv3 != y
-    idx_incv3_t = pred_adv_incv3 == target_y
-    num[3] += torch.sum(pred_adv_121 != y)
-    tsuc[3] += torch.sum(pred_adv_121 == target_y)
-    idx_121 = pred_adv_121 != y
-    idx_121_t = pred_adv_121 == target_y
-    utr[0] += torch.sum(idx_50 & idx_vgg)
-    utr[1] += torch.sum(idx_50 & idx_incv3)
-    utr[2] += torch.sum(idx_50 & idx_121)
-    ttr[0] += torch.sum(idx_50_t & idx_vgg_t)
-    ttr[1] += torch.sum(idx_50_t & idx_incv3_t)
-    ttr[2] += torch.sum(idx_50_t & idx_121_t)
-
-    return list_50, list_y, num, utr, tsuc, ttr 
 
 def save_img(save_path, img):
     if not os.path.exists(save_path):
