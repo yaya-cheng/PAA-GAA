@@ -22,7 +22,7 @@ import math
 from utils import test
 
 parser = argparse.ArgumentParser(description='PyTorch Attack')
-parser.add_argument('--data', default='data/ImageNet_chosen_dn-res-incv3-vgg19_5perclass', metavar='DIR', help='path to dataset')
+parser.add_argument('--data', default='ImageNet_chosen_dn-res-incv3-vgg19_5perclass', metavar='DIR', help='path to dataset')
 parser.add_argument('--mean', type=float, default=np.array([0.485, 0.456, 0.406]), help='mean.')
 parser.add_argument('--std', type=float, default=np.array([0.229, 0.224, 0.225]), help='std.')
 parser.add_argument('--eps', default=0.07, type=float, metavar='N', help='epsilon for attack perturbation')
